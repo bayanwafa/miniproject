@@ -1,6 +1,7 @@
 const express = require('express'); // We import the express application
 const cors = require('cors'); // Necessary for localhost
 const app = express(); // Creates an express application in app
+const morgan = require('morgan');
 
 /**
  * Initial application setup
@@ -9,6 +10,9 @@ const app = express(); // Creates an express application in app
  */
 app.use(cors());
 app.use(express.json());
+
+// Middleware setup
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :req[body]'));
 
 
 /**
