@@ -1,1 +1,24 @@
-GET http://localhost:3001/api/currency/
+GET http://localhost:3003/api/currency/
+
+###
+
+GET http://localhost:3003/api/currency/1
+
+###
+
+POST http://localhost:3003/api/currency/
+Content-Type: application/json
+
+{
+  "currencyCode": "EUR",
+  "country": "Germany",
+  "conversionRate": 0.85
+}
+
+###
+
+PUT http://localhost:3003/api/currency/1/0.8
+
+###
+
+DELETE http://localhost:3003/api/currency/2
