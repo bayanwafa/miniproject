@@ -28,12 +28,22 @@ let currencies = [
 
 
 /**
+ * TODO: GET Endpoint
+ * @receives a get request to the URL: http://localhost:3003/
+ * @responds with returning the data as a JSON
+ */
+router.get('/', (request, response) => {
+  response.json(currencies);
+});
+
+
+/**
  * TODO: GET:id Endpoint
  * @receives a get request to the URL: http://localhost:3001/api/currency/:id
  * @responds with returning specific data as a JSON
  */
 // GET a specific currency by ID
-router.get('/api/currency/:id', (request, response) => {
+router.get('/:id', (request, response) => {
   const id = parseInt(request.params.id);
   const currency = currencies.find(curr => curr.id === id);
 
@@ -52,7 +62,7 @@ router.get('/api/currency/:id', (request, response) => {
  * @responds by returning the newly created resource
  */
 // POST a new currency
-router.post('/api/currency/', (request, response) => {
+router.post('/', (request, response) => {
   const newCurrency = request.body;
 
   // Check if required information is missing
@@ -74,7 +84,7 @@ router.post('/api/currency/', (request, response) => {
  * @responds by returning the newly updated resource
  */
 // PUT update a currency's conversion rate by ID
-router.put('/api/currency/:id/:newRate', (request, response) => {
+router.put('/:id/:newRate', (request, response) => {
   const id = parseInt(request.params.id);
   const newRate = parseFloat(request.params.newRate);
 
@@ -100,19 +110,11 @@ router.put('/api/currency/:id/:newRate', (request, response) => {
  * @responds by returning a status code of 204
  */
 // DELETE a currency by ID
-router.delete('/api/currency/:id', (request, response) => {
+router.delete('/:id', (request, response) => {
   const id = parseInt(request.params.id);
   currencies = currencies.filter(curr => curr.id !== id);
   response.status(204).send();
 });
-
-
-// Unknown endpoint handler
-router.use((request, response) => {
-  response.status(404).json({ error: 'Unknown endpoint' });
-});
-
-
 
 
 module.exports = router;
