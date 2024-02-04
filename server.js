@@ -1,4 +1,5 @@
 const express = require('express'); // We import the express application
+require("dotenv").config();
 const cors = require('cors'); // Necessary for localhost
 const morgan = require('morgan');
 const middleware = require('./utils/middleware'); // Importing middleware configuration
@@ -28,7 +29,7 @@ app.use((request, response) => {
 
 
 // Server setup
-const PORT = 3003
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`)
 });
